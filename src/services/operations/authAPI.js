@@ -4,8 +4,7 @@ import { setLoading, setToken } from "../../slices/authSlice"
 import { setUser } from "../../slices/profileSlice"
 import { apiConnector } from "../apiConnector"
 import { endpoints } from "../apis"
-import { HttpStatusCode } from "axios"
-import { HTTP_METHODS } from "../../utils/constants"
+import { HTTP_METHODS, HttpStatusCode } from "../../utils/constants"
 
 const {
   SENDOTP_API,
