@@ -1,8 +1,6 @@
 import { toast } from "react-hot-toast"
-
 import { apiConnector } from "../apiConnector"
 import { categoryEndpoints, expensesEndpoints } from "../apis"
-import { logout } from "./authAPI"
 import { HTTP_METHODS } from "../../utils/constants"
 
 const {
