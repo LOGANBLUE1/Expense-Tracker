@@ -122,3 +122,23 @@ export function deleteProfile(token, navigate) {
     }
   }
 }
+
+
+export const userDashboard = async(token) => {
+  let result = null
+  const toastId = toast.loading("Loading...")
+  try {
+    const response = await apiConnector(HTTP_METHODS.GET, GET_INSTRUCTOR_DATA_API, null, {
+      Authorization: `Bearer ${token}`,
+    })
+
+    result = response?.data
+    // console.log("GET_INSTRUCTOR_DATA_API RESPONSE............", response)
+  } catch (error) {
+    console.log("GET_INSTRUCTOR_DATA_API ERROR............", error)
+    toast.error("Could Not Get userDashboard Details")
+  } finally {
+    toast.dismiss(toastId)
+  }
+  return result
+}

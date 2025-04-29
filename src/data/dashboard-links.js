@@ -12,15 +12,15 @@ export const sidebarLinks = [
     icon: "VscVm",
   },
   {
-    id: 3,
-    name: "Add Expense",
-    path: "/dashboard/add-expenses",
-    icon: "VscAdd",
-  },
-  {
     id: 4,
     name: "Dashboard",
     path: "/dashboard/visualize",
+    icon: "VscDashboard",
+  },
+  {
+    id: 3,
+    name: "Add Expense",
+    path: "/dashboard/add-expenses",
     icon: "VscAdd",
   }
 ]

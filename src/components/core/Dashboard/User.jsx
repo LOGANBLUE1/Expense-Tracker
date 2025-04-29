@@ -4,37 +4,30 @@ import { Link } from "react-router-dom"
 
 import Chart from "./Chart"
 import { getAllExpenses } from "../../../services/operations/expensesAPI"
-import { getUserDetails } from "../../../services/operations/profileAPI"
+import { userDashboard } from "../../../services/operations/profileAPI"
 
 export default function User() {
   const { token } = useSelector((state) => state.auth)
   const { user } = useSelector((state) => state.profile)
   const [loading, setLoading] = useState(false)
-  const [userData, setUserData] = useState(null)
+  const [userData, setUserData] = useState([])
   const [expenses, setExpenses] = useState([])
   const [total, setTotal] = useState(0)
 
   useEffect(() => {
     ;(async () => {
       setLoading(true)
-    //   const userData = await getUserDetails(token)
+      const usrData = await userDashboard(token)
       const result = await getAllExpenses(token)
-    //   console.log("Result: ", result)
-      // console.log(userData)
-    //   if (userData?.length) setUserData(userData)
+      if(usrData?.length) setUserData(usrData)
       if (result) {
         setExpenses(result?.allexpenses)
         setTotal(result?.totalAmount)
-        console.log("Expenses: ", result)
+        // console.log("Expenses: ", result)
       }
       setLoading(false)
     })()
   }, [])
-
-  const totalStudents = userData?.reduce(
-    (acc, curr) => acc + curr.totalStudentsEnrolled,
-    0
-  )
 
   return (
     <div>
@@ -52,9 +45,8 @@ export default function User() {
         <div>
           <div className="my-4 flex h-[500px] space-x-4">
             {/* Render chart / graph */}
-            {total > 0 || totalStudents > 0 ? (
-            //   <Chart />
-              <></>
+            {total > 0 ? (
+              <Chart categories={userData}/>
             ) : (
               <div className="flex-1 rounded-md bg-richblack-800 p-6">
                 <p className="text-lg font-bold text-richblack-5">Visualize</p>
@@ -72,6 +64,12 @@ export default function User() {
                   <p className="text-lg text-richblack-200">Total Expenses</p>
                   <p className="text-3xl font-semibold text-richblack-50">
                     {expenses.length}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-lg text-richblack-200">Total Categories</p>
+                  <p className="text-3xl font-semibold text-richblack-50">
+                    {userData.length}
                   </p>
                 </div>
                 <div>
@@ -93,31 +91,26 @@ export default function User() {
               </Link>
             </div>
             <div className="my-4 flex items-start space-x-6">
-              {/* {expenses && expenses?.slice(0, 3).map((course) => (
-                <div key={course._id} className="w-1/3">
-                  <img
-                    src={course.thumbnail}
-                    alt={course.courseName}
-                    className="h-[201px] w-full rounded-md object-cover"
-                  />
+              {expenses && expenses?.slice(0, 3).map((expense) => (
+                <div key={expense._id} className="w-1/3">
                   <div className="mt-3 w-full">
                     <p className="text-sm font-medium text-richblack-50">
-                      {course.courseName}
+                      {expense.expenseDescription}
                     </p>
                     <div className="mt-1 flex items-center space-x-2">
                       <p className="text-xs font-medium text-richblack-300">
-                        {course.studentsEnrolled.length} students
+                        {expense.category.name}
                       </p>
                       <p className="text-xs font-medium text-richblack-300">
                         |
                       </p>
                       <p className="text-xs font-medium text-richblack-300">
-                        Rs. {course.price}
+                        Rs. {expense.amount}
                       </p>
                     </div>
                   </div>
                 </div>
-              ))} */}
+              ))}
             </div>
           </div>
         </div>

@@ -109,28 +109,27 @@ exports.getCompleteUserDetails = async (req, res) => {
 
 exports.userDashboard = async (req, res) => {
   try {
-    const allExpenses = await Expense.find({ user: req.user.id })
+    const allExpenses = await Expense.find({ user: req.user.id }).populate("category").exec();
 
-    const expenseData = allExpenses.map((expense) => {
-      const totalStudentsEnrolled = expense.studentsEnrolled.length
-      const totalAmountGenerated = totalStudentsEnrolled * expense.price
+    const categoryMap = new Map();
 
-      // Create a new object with the additional fields
-      const courseDataWithStats = {
-        _id: expense._id,
-        courseName: expense.courseName,
-        courseDescription: expense.courseDescription,
-        // Include other expense properties as needed
-        totalStudentsEnrolled,
-        totalAmountGenerated,
+    allExpenses.forEach((expense) => {
+      const catId = expense.category._id.toString();
+      if (!categoryMap.has(catId)) {
+        categoryMap.set(catId, {
+          categoryId: catId,
+          categoryName: expense.category.name,
+          totalAmount: 0
+        });
       }
+      categoryMap.get(catId).totalAmount += expense.amount;
+    });
 
-      return courseDataWithStats
-    })
+    const result = Array.from(categoryMap.values());
 
     res.status(200).json({ 
       success: true,
-      data: expenseData
+      data: result
     })
   } catch (error) {
     console.error(error)

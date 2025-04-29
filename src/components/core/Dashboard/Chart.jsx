@@ -4,7 +4,8 @@ import { Pie } from "react-chartjs-2"
 
 Chart.register(...registerables)
 
-export default function Charts({ courses }) {
+export default function Charts({ categories }) {
+  console.log("Categories: ", categories)
   const [currChart, setCurrChart] = useState("category")
 
   // Function to generate random colors for the chart
@@ -21,25 +22,25 @@ export default function Charts({ courses }) {
 
   // Data for the chart displaying student information
   const chartDataStudents = {
-    labels: courses.map((course) => course.courseName),
+    labels: categories.map((category) => category.categoryName),
     datasets: [
       {
-        data: courses.map((course) => course.totalStudentsEnrolled),
-        backgroundColor: generateRandomColors(courses.length),
+        data: categories.map((category) => category.totalAmount),
+        backgroundColor: generateRandomColors(categories.length),
       },
     ],
   }
 
   // Data for the chart displaying timeframe information
-  const chartIncomeData = {
-    labels: courses.map((course) => course.courseName),
-    datasets: [
-      {
-        data: courses.map((course) => course.totalAmountGenerated),
-        backgroundColor: generateRandomColors(courses.length),
-      },
-    ],
-  }
+  // const chartIncomeData = {
+  //   labels: categories.map((course) => course.name),
+  //   datasets: [
+  //     {
+  //       data: categories.map((course) => course.totalAmountGenerated),
+  //       backgroundColor: generateRandomColors(categories.length),
+  //     },
+  //   ],
+  // }
 
   // Options for the chart
   const options = {
@@ -76,7 +77,11 @@ export default function Charts({ courses }) {
       <div className="relative mx-auto aspect-square h-full w-full overflow-hidden">
         {/* Render the Pie chart based on the selected chart */}
         <Pie
-          data={currChart === "category" ? chartDataStudents : chartIncomeData}
+          data={
+            // currChart === "category" ? 
+            chartDataStudents
+            //  : chartIncomeData
+            }
           options={options}
         />
       </div>

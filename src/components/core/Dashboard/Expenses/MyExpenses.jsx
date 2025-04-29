@@ -94,7 +94,7 @@ export default function MyExpenses() {
               >
                 <Td className="flex flex-1 gap-x-4">
                   <div className="flex flex-col justify-between">
-                    <p className="text-xs text-richblack-300">
+                    <p className="text-md text-white">
                       {expense?.expenseDescription && expense.expenseDescription.split(" ").length >
                       TRUNCATE_LENGTH
                         ? expense.expenseDescription
@@ -103,7 +103,7 @@ export default function MyExpenses() {
                             .join(" ") + "..."
                         : expense.expenseDescription}
                     </p>
-                    <p className="text-[12px] text-white">
+                    <p className="text-[12px] text-richblack-300">
                       Created: {formatDate(expense?.createdAt)}
                     </p>
                   </div>
