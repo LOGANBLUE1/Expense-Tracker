@@ -1,11 +1,11 @@
 import { useState } from "react"
 import { Chart, registerables } from "chart.js"
 import { Pie } from "react-chartjs-2"
+import MonthlyExpensesChart from "./MonthlyExpensesChart"
 
 Chart.register(...registerables)
 
 export default function Charts({ categories }) {
-  console.log("Categories: ", categories)
   const [currChart, setCurrChart] = useState("category")
 
   // Function to generate random colors for the chart
@@ -22,25 +22,15 @@ export default function Charts({ categories }) {
 
   // Data for the chart displaying student information
   const chartDataStudents = {
-    labels: categories.map((category) => category.categoryName),
+    labels: categories?.data.map((category) => category.categoryName),
     datasets: [
       {
-        data: categories.map((category) => category.totalAmount),
-        backgroundColor: generateRandomColors(categories.length),
+        data: categories?.data.map((category) => category.totalAmount),
+        backgroundColor: generateRandomColors(categories?.data.length),
       },
     ],
   }
 
-  // Data for the chart displaying timeframe information
-  // const chartIncomeData = {
-  //   labels: categories.map((course) => course.name),
-  //   datasets: [
-  //     {
-  //       data: categories.map((course) => course.totalAmountGenerated),
-  //       backgroundColor: generateRandomColors(categories.length),
-  //     },
-  //   ],
-  // }
 
   // Options for the chart
   const options = {
@@ -76,7 +66,7 @@ export default function Charts({ categories }) {
       </div>
       <div className="relative mx-auto aspect-square h-full w-full overflow-hidden">
         {/* Render the Pie chart based on the selected chart */}
-        <Pie
+        {currChart === "category" ? <Pie
           data={
             // currChart === "category" ? 
             chartDataStudents
@@ -84,6 +74,10 @@ export default function Charts({ categories }) {
             }
           options={options}
         />
+      : 
+        <MonthlyExpensesChart data={categories?.data2}/>
+      }
+        
       </div>
     </div>
   )

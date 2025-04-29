@@ -24,7 +24,7 @@ import Dashboard from "./pages/Dashboard"
 import { getUserDetails } from "./services/operations/profileAPI"
 import MyExpenses from "./components/core/Dashboard/Expenses/MyExpenses"
 import EditExpense from "./components/core/Dashboard/Expenses/EditExpense"
-import User from "./components/core/Dashboard/User"
+import User from "./components/core/Dashboard/Charts/User"
 
 function App() {
   const dispatch = useDispatch()

@@ -127,9 +127,29 @@ exports.userDashboard = async (req, res) => {
 
     const result = Array.from(categoryMap.values());
 
+
+    const monthlyTotalsMap = new Map();
+    allExpenses.forEach(exp => {
+      const date = new Date(exp.createdAt);
+      const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`; // e.g., "2025-04"
+
+      if (!monthlyTotalsMap.has(monthKey)) {
+        monthlyTotalsMap.set(monthKey, 0);
+      }
+
+      monthlyTotalsMap.set(monthKey, monthlyTotalsMap.get(monthKey) + exp.amount);
+    });
+
+    const monthlyTotals = Array.from(monthlyTotalsMap.entries()).map(([month, total]) => ({
+      month,
+      totalAmount: total
+    }));
+
+
     res.status(200).json({ 
       success: true,
-      data: result
+      data: result,
+      data2: monthlyTotals
     })
   } catch (error) {
     console.error(error)

@@ -132,7 +132,7 @@ export const userDashboard = async(token) => {
       Authorization: `Bearer ${token}`,
     })
 
-    result = response?.data
+    result = response
     // console.log("GET_INSTRUCTOR_DATA_API RESPONSE............", response)
   } catch (error) {
     console.log("GET_INSTRUCTOR_DATA_API ERROR............", error)

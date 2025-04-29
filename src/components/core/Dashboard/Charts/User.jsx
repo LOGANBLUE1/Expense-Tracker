@@ -3,8 +3,8 @@ import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 
 import Chart from "./Chart"
-import { getAllExpenses } from "../../../services/operations/expensesAPI"
-import { userDashboard } from "../../../services/operations/profileAPI"
+import { getAllExpenses } from "../../../../services/operations/expensesAPI"
+import { userDashboard } from "../../../../services/operations/profileAPI"
 
 export default function User() {
   const { token } = useSelector((state) => state.auth)
@@ -19,7 +19,7 @@ export default function User() {
       setLoading(true)
       const usrData = await userDashboard(token)
       const result = await getAllExpenses(token)
-      if(usrData?.length) setUserData(usrData)
+      if(usrData?.data?.length) setUserData(usrData)
       if (result) {
         setExpenses(result?.allexpenses)
         setTotal(result?.totalAmount)
@@ -69,7 +69,7 @@ export default function User() {
                 <div>
                   <p className="text-lg text-richblack-200">Total Categories</p>
                   <p className="text-3xl font-semibold text-richblack-50">
-                    {userData.length}
+                    {userData?.data.length}
                   </p>
                 </div>
                 <div>
