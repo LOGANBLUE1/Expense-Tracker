@@ -131,9 +131,14 @@ exports.getAllExpenses = async (req, res) => {
     .populate("category")
     .exec()
 
+    const totalAmount = allexpenses.reduce((acc, expense) => acc + expense.amount, 0)
+
     return res.status(200).json({
       success: true,
-      data: allexpenses
+      data: {
+        allexpenses, 
+        totalAmount
+      }
     })
   } catch (error) {
     console.log(error)

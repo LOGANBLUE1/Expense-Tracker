@@ -24,5 +24,5 @@ export const profileEndpoints = {
   DELETE_PROFILE_API: "/profile/deleteProfile",
   UPDATE_PROFILE_API: "/profile/updateProfile",
   GET_USER_DETAILS_API: "/profile/getUserDetails",
-  GET_INSTRUCTOR_DATA_API: "/profile/instructorDashboard"
+  GET_INSTRUCTOR_DATA_API: "/profile/userDashboard"
 }

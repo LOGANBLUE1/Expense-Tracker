@@ -24,6 +24,7 @@ import Dashboard from "./pages/Dashboard"
 import { getUserDetails } from "./services/operations/profileAPI"
 import MyExpenses from "./components/core/Dashboard/Expenses/MyExpenses"
 import EditExpense from "./components/core/Dashboard/Expenses/EditExpense"
+import User from "./components/core/Dashboard/User"
 
 function App() {
   const dispatch = useDispatch()
@@ -57,6 +58,7 @@ function App() {
           <Route path="my-expenses" element={<MyExpenses/>} />
           <Route path="add-expenses" element={<AddExpense/>} />
           <Route path="edit-expense/:expenseId" element={<EditExpense />} />
+          <Route path="visualize" element={<User/>} />
         </Route>
 
         {/* 404 Page */}

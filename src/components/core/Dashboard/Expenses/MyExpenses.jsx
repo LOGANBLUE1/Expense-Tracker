@@ -87,7 +87,7 @@ export default function MyExpenses() {
               </Td>
             </Tr>
           ) : (
-            expenses?.map((expense) => (
+            expenses?.allexpenses?.map((expense) => (
               <Tr
                 key={expense._id}
                 className="flex gap-x-10 border-b border-richblack-800 px-6 py-8"
@@ -151,6 +151,7 @@ export default function MyExpenses() {
           )}
         </Tbody>
       </Table>}
+      <h1 className="text-2xl font-medium text-richblack-5 mt-5">Total Sum: {expenses.totalAmount}</h1>
       {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
     </div>
   )

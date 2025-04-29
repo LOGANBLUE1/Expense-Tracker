@@ -107,20 +107,20 @@ exports.getCompleteUserDetails = async (req, res) => {
 }
 
 
-exports.instructorDashboard = async (req, res) => {
+exports.userDashboard = async (req, res) => {
   try {
-    const courseDetails = await Course.find({ instructor: req.user.id })
+    const allExpenses = await Expense.find({ user: req.user.id })
 
-    const courseData = courseDetails.map((course) => {
-      const totalStudentsEnrolled = course.studentsEnrolled.length
-      const totalAmountGenerated = totalStudentsEnrolled * course.price
+    const expenseData = allExpenses.map((expense) => {
+      const totalStudentsEnrolled = expense.studentsEnrolled.length
+      const totalAmountGenerated = totalStudentsEnrolled * expense.price
 
       // Create a new object with the additional fields
       const courseDataWithStats = {
-        _id: course._id,
-        courseName: course.courseName,
-        courseDescription: course.courseDescription,
-        // Include other course properties as needed
+        _id: expense._id,
+        courseName: expense.courseName,
+        courseDescription: expense.courseDescription,
+        // Include other expense properties as needed
         totalStudentsEnrolled,
         totalAmountGenerated,
       }
@@ -130,7 +130,7 @@ exports.instructorDashboard = async (req, res) => {
 
     res.status(200).json({ 
       success: true,
-      data: courseData
+      data: expenseData
     })
   } catch (error) {
     console.error(error)

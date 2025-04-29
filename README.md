@@ -33,7 +33,7 @@ npm run dev
 
 ```
 expense-tracker-app/
-├── client/         # React frontend
+├── src/         # React frontend
 ├── server/         # Node.js backend
 │   ├── routes/
 │   ├── controllers/
@@ -41,9 +41,3 @@ expense-tracker-app/
 ├── package.json
 └── README.md
 ```
-
----
-
-## 📄 License
-
-MIT
