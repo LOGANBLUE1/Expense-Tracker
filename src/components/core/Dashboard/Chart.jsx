@@ -5,8 +5,7 @@ import { Pie } from "react-chartjs-2"
 Chart.register(...registerables)
 
 export default function Charts({ courses }) {
-  // State to keep track of the currently selected chart
-  const [currChart, setCurrChart] = useState("students")
+  const [currChart, setCurrChart] = useState("category")
 
   // Function to generate random colors for the chart
   const generateRandomColors = (numColors) => {
@@ -31,7 +30,7 @@ export default function Charts({ courses }) {
     ],
   }
 
-  // Data for the chart displaying income information
+  // Data for the chart displaying timeframe information
   const chartIncomeData = {
     labels: courses.map((course) => course.courseName),
     datasets: [
@@ -51,33 +50,33 @@ export default function Charts({ courses }) {
     <div className="flex flex-1 flex-col gap-y-4 rounded-md bg-richblack-800 p-6">
       <p className="text-lg font-bold text-richblack-5">Visualize</p>
       <div className="space-x-4 font-semibold">
-        {/* Button to switch to the "students" chart */}
+        {/* Button to switch to the "category" chart */}
         <button
-          onClick={() => setCurrChart("students")}
+          onClick={() => setCurrChart("category")}
           className={`rounded-sm p-1 px-3 transition-all duration-200 ${
-            currChart === "students"
+            currChart === "category"
               ? "bg-richblack-700 text-yellow-50"
               : "text-yellow-400"
           }`}
         >
           Students
         </button>
-        {/* Button to switch to the "income" chart */}
+        {/* Button to switch to the "timeframe" chart */}
         <button
-          onClick={() => setCurrChart("income")}
+          onClick={() => setCurrChart("timeframe")}
           className={`rounded-sm p-1 px-3 transition-all duration-200 ${
-            currChart === "income"
+            currChart === "timeframe"
               ? "bg-richblack-700 text-yellow-50"
               : "text-yellow-400"
           }`}
         >
-          Income
+          Timeframe
         </button>
       </div>
       <div className="relative mx-auto aspect-square h-full w-full overflow-hidden">
         {/* Render the Pie chart based on the selected chart */}
         <Pie
-          data={currChart === "students" ? chartDataStudents : chartIncomeData}
+          data={currChart === "category" ? chartDataStudents : chartIncomeData}
           options={options}
         />
       </div>

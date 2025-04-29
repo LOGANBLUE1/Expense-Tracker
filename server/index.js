@@ -7,6 +7,7 @@ const expenseRoutes = require("./routes/expenseRoutes");
 const database = require("./config/database");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const fileUpload = require("express-fileupload");
 require("dotenv").config();
 
 // Setting up port number
@@ -23,6 +24,12 @@ app.use(
 	cors({
 		origin: ["http://localhost:3000"],
 		credentials: true
+	})
+);
+app.use(
+	fileUpload({
+		useTempFiles: true,
+		tempFileDir: "/tmp/"
 	})
 );
 

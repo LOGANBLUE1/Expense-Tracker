@@ -3,12 +3,13 @@ import { useForm } from "react-hook-form"
 import { toast } from "react-hot-toast"
 import { HiOutlineCurrencyRupee } from "react-icons/hi"
 import { MdNavigateNext } from "react-icons/md"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 
 import { createExpense, updateExpense } from "../../../../services/operations/expensesAPI"
 import { getAllCategories } from "../../../../services/operations/expensesAPI"
 import IconBtn from "../../../Common/IconBtn"
 import { allowOnlyNumber } from "../../../../utils/utils"
+import { setExpense, setEditExpense } from "../../../../slices/expenseSlice"
 
 export default function ExpenseForm() {
   const {
@@ -19,6 +20,7 @@ export default function ExpenseForm() {
     formState: { errors },
   } = useForm()
   
+  const dispatch = useDispatch()
   const { expense, editExpense } = useSelector((state) => state.expense)
   const { token } = useSelector((state) => state.auth)
   const [loading, setLoading] = useState(false)
@@ -73,6 +75,8 @@ export default function ExpenseForm() {
       } else {
         toast.error("No changes made")
       }
+      dispatch(setExpense(expense))
+      dispatch(setEditExpense(false))
       return
     }
 

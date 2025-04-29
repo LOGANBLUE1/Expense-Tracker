@@ -79,7 +79,7 @@ export default function MyExpenses() {
           </Tr>
         </Thead>
         <Tbody>
-          {expenses?.length === 0 ? (
+          {expenses?.allexpenses?.length === 0 ? (
             <Tr>
               <Td className="py-10 text-center text-2xl font-medium text-richblack-100">
                 No expenses found
@@ -151,7 +151,7 @@ export default function MyExpenses() {
           )}
         </Tbody>
       </Table>}
-      <h1 className="text-2xl font-medium text-richblack-5 mt-5">Total Sum: {expenses.totalAmount}</h1>
+      <h1 className="text-2xl font-medium text-richblack-5 mt-5">Expense Total: {expenses.totalAmount}</h1>
       {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
     </div>
   )

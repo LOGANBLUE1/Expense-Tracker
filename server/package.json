@@ -1,14 +1,14 @@
 {
-	"name": "edtech-backend",
+	"name": "Expense-Tracker",
 	"version": "1.0.0",
-	"description": "edtech-backend",
+	"description": "Expense-Tracker",
 	"main": "index.js",
 	"scripts": {
 		"start": "node index.js",
 		"dev": "nodemon index.js"
 	},
 	"keywords": [
-		"EdTech-backend"
+		"Expense-Tracker"
 	],
 	"author": "Aditya Pareek",
 	"license": "ISC",
@@ -18,6 +18,7 @@
 		"crypto-random-string": "^5.0.0",
 		"dotenv": "^16.0.3",
 		"express": "^4.18.2",
+		"express-fileupload": "^1.5.1",
 		"google-auth-library": "^9.15.1",
 		"jsonwebtoken": "^9.0.0",
 		"mongoose": "^7.0.3",

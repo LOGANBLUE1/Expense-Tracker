@@ -1,6 +1,6 @@
 {
-  "name": "edtech-client",
-  "description": "This is the client side of the edtech App",
+  "name": "Expense-tracker client",
+  "description": "This is the client side of the Expense-tracker App",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -49,7 +49,7 @@
     "eject": "react-scripts eject",
     "server": "cd server && npm run dev",
     "dev": "concurrently -n \"client,server\" -c \"bgBlue,bgYellow\" \"npm start\" \"npm run server\"",
-    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org aditya-pareek --project edtech-react src && sentry-cli sourcemaps upload --org aditya-pareek --project edtech-react src"
+    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org aditya-pareek --project Expense-tracker react src && sentry-cli sourcemaps upload --org aditya-pareek --project Expense-tracker react src"
   },
   "eslintConfig": {
     "extends": [

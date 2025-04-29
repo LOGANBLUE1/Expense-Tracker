@@ -12,6 +12,7 @@ export default function User() {
   const [loading, setLoading] = useState(false)
   const [userData, setUserData] = useState(null)
   const [expenses, setExpenses] = useState([])
+  const [total, setTotal] = useState(0)
 
   useEffect(() => {
     ;(async () => {
@@ -22,16 +23,13 @@ export default function User() {
       // console.log(userData)
     //   if (userData?.length) setUserData(userData)
       if (result) {
-        setExpenses(result)
+        setExpenses(result?.allexpenses)
+        setTotal(result?.totalAmount)
+        console.log("Expenses: ", result)
       }
       setLoading(false)
     })()
   }, [])
-
-  const totalAmount = userData?.reduce(
-    (acc, curr) => acc + curr.totalAmountGenerated,
-    0
-  )
 
   const totalStudents = userData?.reduce(
     (acc, curr) => acc + curr.totalStudentsEnrolled,
@@ -50,12 +48,13 @@ export default function User() {
       </div>
       {loading ? (
         <div className="spinner"></div>
-      ) : expenses?.length > 0 ? (
+      ) : (expenses && expenses?.length) > 0 ? (
         <div>
           <div className="my-4 flex h-[500px] space-x-4">
             {/* Render chart / graph */}
-            {totalAmount > 0 || totalStudents > 0 ? (
-              <Chart expenses={userData} />
+            {total > 0 || totalStudents > 0 ? (
+            //   <Chart />
+              <></>
             ) : (
               <div className="flex-1 rounded-md bg-richblack-800 p-6">
                 <p className="text-lg font-bold text-richblack-5">Visualize</p>
@@ -76,15 +75,9 @@ export default function User() {
                   </p>
                 </div>
                 <div>
-                  <p className="text-lg text-richblack-200">Total Students</p>
+                  <p className="text-lg text-richblack-200">Expense Total</p>
                   <p className="text-3xl font-semibold text-richblack-50">
-                    {totalStudents}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-lg text-richblack-200">Total Income</p>
-                  <p className="text-3xl font-semibold text-richblack-50">
-                    Rs. {totalAmount}
+                    Rs. {total}
                   </p>
                 </div>
               </div>
@@ -100,7 +93,7 @@ export default function User() {
               </Link>
             </div>
             <div className="my-4 flex items-start space-x-6">
-              {expenses.slice(0, 3).map((course) => (
+              {/* {expenses && expenses?.slice(0, 3).map((course) => (
                 <div key={course._id} className="w-1/3">
                   <img
                     src={course.thumbnail}
@@ -124,7 +117,7 @@ export default function User() {
                     </div>
                   </div>
                 </div>
-              ))}
+              ))} */}
             </div>
           </div>
         </div>
