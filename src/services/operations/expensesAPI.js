@@ -10,8 +10,7 @@ const {
 } = expensesEndpoints
 
 const {
-  GET_CATEGORIES_API,
-  CREATE_CATEGORY_API
+  GET_CATEGORIES_API
 } = categoryEndpoints
 
 export const createExpense = async (data, token) => {

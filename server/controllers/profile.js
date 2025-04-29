@@ -107,40 +107,6 @@ exports.getCompleteUserDetails = async (req, res) => {
   }
 }
 
-exports.updateDisplayPicture = async (req, res) => {
-  try {
-    const displayPicture = req.files?.displayPicture
-    if(!displayPicture){
-      return res.status(400).json({
-        success: false,
-        message: "Please upload an image",
-      })
-    }
-    const userId = req.user.id
-    const image = await uploadImageToCloudinary(
-      displayPicture,
-      process.env.FOLDER_NAME,
-      1000,
-      1000
-    )
-    const updatedProfile = await User.findByIdAndUpdate(
-      { _id: userId },
-      { image: image.secure_url },
-      { new: true }
-    )
-    res.send({
-      success: true,
-      message: `Image Updated successfully`,
-      data: updatedProfile,
-    })
-  } catch (error) {
-    return res.status(500).json({
-      success: false,
-      message: error.message,
-    })
-  }
-}
-
 
 exports.instructorDashboard = async (req, res) => {
   try {

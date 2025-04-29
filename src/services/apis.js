@@ -15,8 +15,7 @@ export const expensesEndpoints = {
 
 // CATAGORIES API
 export const categoryEndpoints = {
-  GET_CATEGORIES_API: "/expense/showAllCategories",
-  CREATE_CATEGORY_API: "/expense/createCategory"
+  GET_CATEGORIES_API: "/expense/showAllCategories"
 }
 
 
@@ -25,6 +24,5 @@ export const profileEndpoints = {
   DELETE_PROFILE_API: "/profile/deleteProfile",
   UPDATE_PROFILE_API: "/profile/updateProfile",
   GET_USER_DETAILS_API: "/profile/getUserDetails",
-  UPDATE_DISPLAY_PICTURE_API: "/profile/updateDisplayPicture",
   GET_INSTRUCTOR_DATA_API: "/profile/instructorDashboard"
 }

@@ -16,7 +16,6 @@ import { setExpense, setEditExpense } from "../../../../slices/expenseSlice"
 export default function MyExpenses() {
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth)
-  const { expense, editExpense } = useSelector((state) => state.expense)
   const navigate = useNavigate()
   const [expenses, setExpenses] = useState([])
   const [loading, setLoading] = useState(false)
