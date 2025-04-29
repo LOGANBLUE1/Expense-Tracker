@@ -20,8 +20,8 @@ export default function Charts({ categories }) {
     return colors
   }
 
-  // Data for the chart displaying student information
-  const chartDataStudents = {
+  // Data for the chart displaying expense information
+  const chartData = {
     labels: categories?.data.map((category) => category.categoryName),
     datasets: [
       {
@@ -50,7 +50,7 @@ export default function Charts({ categories }) {
               : "text-yellow-400"
           }`}
         >
-          Students
+          Categories
         </button>
         {/* Button to switch to the "timeframe" chart */}
         <button
@@ -69,7 +69,7 @@ export default function Charts({ categories }) {
         {currChart === "category" ? <Pie
           data={
             // currChart === "category" ? 
-            chartDataStudents
+            chartData
             //  : chartIncomeData
             }
           options={options}

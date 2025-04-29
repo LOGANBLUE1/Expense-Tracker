@@ -11,7 +11,7 @@ const {
   UPDATE_PROFILE_API,
   GET_USER_DETAILS_API,
   UPDATE_DISPLAY_PICTURE_API,
-  GET_INSTRUCTOR_DATA_API,
+  GET_USER_DATA_API,
 } = profileEndpoints
 
 export function updateDisplayPicture(token, formData) {
@@ -128,14 +128,14 @@ export const userDashboard = async(token) => {
   let result = null
   const toastId = toast.loading("Loading...")
   try {
-    const response = await apiConnector(HTTP_METHODS.GET, GET_INSTRUCTOR_DATA_API, null, {
+    const response = await apiConnector(HTTP_METHODS.GET, GET_USER_DATA_API, null, {
       Authorization: `Bearer ${token}`,
     })
 
     result = response
-    // console.log("GET_INSTRUCTOR_DATA_API RESPONSE............", response)
+    // console.log("GET_USER_DATA_API RESPONSE............", response)
   } catch (error) {
-    console.log("GET_INSTRUCTOR_DATA_API ERROR............", error)
+    console.log("GET_USER_DATA_API ERROR............", error)
     toast.error("Could Not Get userDashboard Details")
   } finally {
     toast.dismiss(toastId)
