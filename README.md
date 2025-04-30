@@ -1,4 +1,3 @@
-
 # 💰 Expense Tracker App
 
 A full-stack Expense Tracker App to manage daily expenses with category-wise breakdowns.
@@ -34,10 +33,28 @@ npm run dev
 ```
 expense-tracker-app/
 ├── src/         # React frontend
-├── server/         # Node.js backend
+├── server/      # Node.js backend
 │   ├── routes/
 │   ├── controllers/
 │   └── models/
 ├── package.json
 └── README.md
 ```
+
+---
+
+## ✅ Features
+
+- 🔐 Authentication:
+  - Login / Signup
+  - Google OAuth login
+  - Reset Password via email
+  - Change Password
+  - Delete Account
+
+- 📊 Expense Management:
+  - Create / Edit / Delete Expense
+  - Pie Chart: Category-wise Expense Distribution
+  - Bar Chart: Monthly Expenses
+
+---
